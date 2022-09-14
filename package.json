@@ -1,0 +1,29 @@
+{
+  "name": "cache-selfhosted",
+  "version": "0.1.0",
+  "description": "Efficient cache action for self-hosted runners",
+  "main": "main.js",
+  "scripts": {
+    "build": "esbuild main.ts post.ts --bundle --platform=node --outdir=dist",
+    "lint": "tsc && prettier --check ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Monoxer/cache-selfhosted.git"
+  },
+  "author": "Kaito Udagawa <umireon@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Monoxer/cache-selfhosted/issues"
+  },
+  "homepage": "https://github.com/Monoxer/cache-selfhosted#readme",
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "esbuild": "^0.15.7",
+    "prettier": "2.7.1",
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "@actions/core": "^1.9.1"
+  }
+}

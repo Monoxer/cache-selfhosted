@@ -1,0 +1,17 @@
+name: 'Cache Self-hosted'
+description: 'Efficient cache action for self-hosted runners'
+
+inputs:
+  path:
+    description: 'Path'
+    required: true
+  key:
+    description: 'Key'
+    required: true
+runs:
+  using: 'node16'
+  main: 'dist/main.js'
+  post: 'dist/post.js'
+branding:
+  icon: 'archive'
+  color: 'gray-dark'
