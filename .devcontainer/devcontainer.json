@@ -1,13 +1,11 @@
 {
-	"name": "Node.js & TypeScript",
-	"image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:0-16-bullseye",
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"dbaeumer.vscode-eslint"
-			]
-		}
-	},
-	"postCreateCommand": "npm install",
-	"remoteUser": "node"
+  "name": "Node.js & TypeScript",
+  "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:0-16-bullseye",
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint"]
+    }
+  },
+  "postCreateCommand": "npm install",
+  "remoteUser": "node"
 }
