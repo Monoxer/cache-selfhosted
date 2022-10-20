@@ -9,14 +9,15 @@ import { fileExists } from "./fileExists";
 async function post() {
   const path = core.getInput("path", { required: true });
   const key = core.getInput("key", { required: true });
-  const cacheExists = await fileExists(`${CACHE_DIR}/${key}.tar.zst`);
+  const cacheFile = `${CACHE_DIR}/${key}.tar.zst`;
+  const cacheExists = await fileExists(cacheFile);
   if (cacheExists) {
-    core.info(`Cache exists: ${CACHE_DIR}/${key}.tar.zst`);
+    core.info(`Cache exists: ${cacheFile}`);
   } else {
     await mkdir(CACHE_DIR, { recursive: true });
-    await unlink(`${CACHE_DIR}/${key}.tar.zst`);
-    await exec(`tar -caf ${CACHE_DIR}/${key}.tar.zst ${path}`);
-    core.info("Cache created: ${CACHE_DIR}/${key}.tar.zst");
+    await rm(cacheFile, { force: true });
+    await exec(`tar -caf ${cacheFile} ${path}`);
+    core.info(`Cache created: ${cacheFile}`);
   }
 }
 

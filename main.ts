@@ -9,13 +9,14 @@ import { fileExists } from "./fileExists";
 async function main() {
   const path = core.getInput("path", { required: true });
   const key = core.getInput("key", { required: true });
-  const cacheExists = await fileExists(`${CACHE_DIR}/${key}.tar.zst`);
+  const cacheFile = `${CACHE_DIR}/${key}.tar.zst`;
+  const cacheExists = await fileExists(cacheFile);
   if (cacheExists) {
-    core.info("Cache found: ${CACHE_DIR}/${key}.tar.zst");
+    core.info(`Cache found: ${cacheFile}`);
     await rm(path, { force: true, recursive: true });
-    await exec(`tar -xf ${CACHE_DIR}/${key}.tar.zst ${path}`);
+    await exec(`tar -xf ${cacheFile} ${path}`);
   } else {
-    core.info(`Cache not found: ${CACHE_DIR}/${key}.tar.zst`);
+    core.info(`Cache not found: ${cacheFile}`);
   }
 }
 
