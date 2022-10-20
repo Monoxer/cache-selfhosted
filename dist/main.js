@@ -2173,7 +2173,7 @@ var core = __toESM(require_core());
 
 // constants.ts
 var import_node_os = require("node:os");
-var CACHE_DIR = `${(0, import_node_os.homedir)()}/Library/caches/cache-selfhosted`;
+var CACHE_DIR = `${(0, import_node_os.homedir)()}/Library/Caches/cache-selfhosted`;
 
 // execPromises.ts
 var import_node_child_process = require("node:child_process");
@@ -2195,13 +2195,14 @@ async function fileExists(path) {
 async function main() {
   const path = core.getInput("path", { required: true });
   const key = core.getInput("key", { required: true });
-  const cacheExists = await fileExists(`${CACHE_DIR}/${key}.tar.zst`);
+  const cacheFile = `${CACHE_DIR}/${key}.tar.zst`;
+  const cacheExists = await fileExists(cacheFile);
   if (cacheExists) {
-    core.info("Cache found: ${CACHE_DIR}/${key}.tar.zst");
+    core.info(`Cache found: ${cacheFile}`);
     await (0, import_promises2.rm)(path, { force: true, recursive: true });
-    await exec(`tar -xf ${CACHE_DIR}/${key}.tar.zst ${path}`);
+    await exec(`tar -xf ${cacheFile} ${path}`);
   } else {
-    core.info(`Cache not found: ${CACHE_DIR}/${key}.tar.zst`);
+    core.info(`Cache not found: ${cacheFile}`);
   }
 }
 main();
