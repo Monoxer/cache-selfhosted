@@ -2201,7 +2201,7 @@ async function post() {
     core.info(`Cache exists: ${cacheFile}`);
   } else {
     await (0, import_promises2.mkdir)(CACHE_DIR, { recursive: true });
-    await rm(cacheFile, { force: true });
+    await (0, import_promises2.rm)(cacheFile, { force: true });
     await exec(`tar -caf ${cacheFile} ${path}`);
     core.info(`Cache created: ${cacheFile}`);
   }

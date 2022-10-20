@@ -1,4 +1,4 @@
-import { mkdir, unlink } from "node:fs/promises";
+import { mkdir, rm } from "node:fs/promises";
 
 import * as core from "@actions/core";
 
